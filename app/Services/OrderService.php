@@ -11,7 +11,7 @@ class OrderService
         $subtotal = 0;
 
         foreach ($items as $item) {
-            $subtotal += $item['price'] + $item['quantity'];
+            $subtotal += $item['price'] * $item['quantity'];
         }
 
         $calculator = new DiscountCalculator();
@@ -21,7 +21,7 @@ class OrderService
 
     public function getOrderStatus(array $order): string
     {
-        if ($order['paid'] = true) {
+        if (($order['paid'] ?? false) === true) {
             return 'completed';
         }
 

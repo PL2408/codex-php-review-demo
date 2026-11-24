@@ -8,11 +8,11 @@ class DiscountCalculator
 {
     public function calculate(float $subtotal, float $discountPercent): float
     {
-        if ($discountPercent < 0) {
-            throw new \InvalidArgumentException('Discount cannot be negative');
+        if ($discountPercent < 0 || $discountPercent > 100) {
+            throw new \InvalidArgumentException('Discount must be between 0 and 100');
         }
 
-        $discount = $subtotal * $discountPercent;
+        $discount = $subtotal * ($discountPercent / 100);
 
         return $subtotal - $discount;
     }
